@@ -42,7 +42,7 @@ public class Extend_Dish extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("BN "+billno);
 
-        tvtype = findViewById(R.id.type);
+    /*    tvtype = findViewById(R.id.type);
         tvtime = findViewById(R.id.time);
         tvstatus = findViewById(R.id.status);
         tvjobstatus = findViewById(R.id.jobstatus);
@@ -58,7 +58,7 @@ public class Extend_Dish extends AppCompatActivity {
         tvtotal = findViewById(R.id.grandtot);
         tvpaystatus = findViewById(R.id.paystat);
         tvrate = findViewById(R.id.rate);
-        canbtn = findViewById(R.id.canbtn);
+        canbtn = findViewById(R.id.canbtn);*/
 
         double sgst=0;
 
