@@ -51,6 +51,7 @@
                     android:layout_marginLeft="95dp"
                     android:layout_marginTop="34dp"
                     android:text="QUANTITY : "
+                    android:visibility="invisible"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="16sp"
@@ -63,6 +64,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/quantityHead"
                     android:text="12 Piece"
+                    android:visibility="invisible"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="16sp" />
 
@@ -97,6 +99,7 @@
                     android:layout_marginBottom="-34dp"
                     android:layout_marginEnd="74dp"
                     android:text="Time :"
+                    android:visibility="invisible"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="16sp" />
 
@@ -104,7 +107,7 @@
                     android:id="@+id/timeValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:visibility="invisible"
                     android:layout_alignParentEnd="true"
                     android:layout_marginBottom="-34dp"
                     android:layout_marginEnd="21dp"

@@ -1,3 +1,62 @@
 <resources>
-    <string name="app_name">MyTask</string>
+    <string name="app_name">My Task</string>
+
+    <!-- hints-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_password_confirm">Confirm Password</string>
+
+    <!-- button text-->
+    <string name="btn_login">Login</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="btn_guest">Use as a guest</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_add_card">Add a new card</string>
+
+    <!-- error messages -->
+    <string name="error_empty_username">Please enter your email address</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_empty_confirmation">Please confirm your password</string>
+    <string name="error_invalid_email">Invalid email address, please check again.</string>
+    <string name="error_password_length">Password length must be at least 8.</string>
+    <string name="error_password_inconsistent">Pass words not matching!</string>
+    <string name="error_incorrect_phone_number">Incorrect phone number format!</string>
+    <string name="error_order_info_incomplete">Please specify your phone, address and payment method.</string>
+
+    <!-- location service related messages -->
+    <string name="address_found">Requested address found.</string>
+    <string name="no_address_found">Requested address not found.</string>
+    <string name="invalid_lat_long_used">The input latitude/longitude is invalid.</string>
+    <string name="location_service_not_available">The location service is not available.</string>
+    <string name="no_location_data_provided">No location data provided.</string>
+
+    <!-- content descriptions -->
+    <string name="cd_restaurant_logo">Restaurant Logo</string>
+    <string name="cd_menu_image">Menu image</string>
+
+    <!-- label text-->
+    <string name="label_order_summary">Order Summary</string>
+    <string name="label_add_message">Add a message here.</string>
+    <string name="label_use_coupon">Use a coupon.</string>
+    <string name="label_subtotal">Subtotal</string>
+    <string name="label_tax">Tax</string>
+    <string name="label_delivery">Delivery</string>
+    <string name="label_tips">Tips</string>
+    <string name="label_tips_12">12%</string>
+    <string name="label_tips_15">15%</string>
+    <string name="label_tips_18">18%</string>
+    <string name="label_total">Total</string>
+    <string name="label_delivery_address">Delivery Address</string>
+    <string name="label_payment_method">Payment Method</string>
+    <string name="label_contact_phone">Contact Phone Number</string>
+    <string name="label_place_order">Place Order</string>
+    <string name="label_suggested_address">Suggested current locations:</string>
+    <string name="label_card_number">Ending in:</string>
+
+    <!-- title text -->
+    <string name="title_payment_method">Select Payment Method</string>
+
 </resources>
