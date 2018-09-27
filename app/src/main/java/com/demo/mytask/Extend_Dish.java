@@ -22,25 +22,21 @@ public class Extend_Dish extends AppCompatActivity {
         setContentView(R.layout.activity_extend_dish);
 
 
-        final String time = getIntent().getStringExtra("time");
-        final String billno = getIntent().getStringExtra("billno");
-        final String type = getIntent().getStringExtra("type");
-        final String name = getIntent().getStringExtra("name");
-        final String status = getIntent().getStringExtra("status");
-        final String total = getIntent().getStringExtra("total");
-        final String jobstatus = getIntent().getStringExtra("jobstatus");
-        final String tax = getIntent().getStringExtra("tax");
-        final String address = getIntent().getStringExtra("address");
-        final String jobfor = getIntent().getStringExtra("ofwhat");
-        final String jobto = getIntent().getStringExtra("whereto");
-        final String rate = getIntent().getStringExtra("rate");
-        final String stime = getIntent().getStringExtra("stime");
-        final String etime = getIntent().getStringExtra("etime");
-        final String discount = getIntent().getStringExtra("discount");
+
+
+      final  String nameOfItem =getIntent().getStringExtra("itemName");
+      final  String amountOfQuantity = getIntent().getStringExtra("quantityAmount");
+       final String price = getIntent().getStringExtra("priceValue");
+       final String timeVal = getIntent().getStringExtra("timeValue");
+      final  String customStatus = getIntent().getStringExtra("customStatus");
+       final String imageUri=getIntent().getStringExtra("imageUri");
+       final String checkboxStatus=getIntent().getStringExtra("checkStatus");
+       final String buttonStatus=getIntent().getStringExtra("buttonStatus");
+       final String commentStatus=getIntent().getStringExtra("commentStatus");
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("BN "+billno);
+        getSupportActionBar().setTitle(nameOfItem);
 
     /*    tvtype = findViewById(R.id.type);
         tvtime = findViewById(R.id.time);
@@ -58,63 +54,16 @@ public class Extend_Dish extends AppCompatActivity {
         tvtotal = findViewById(R.id.grandtot);
         tvpaystatus = findViewById(R.id.paystat);
         tvrate = findViewById(R.id.rate);
-        canbtn = findViewById(R.id.canbtn);*/
+        canbtn = findViewById(R.id.canbtn);
 
-        double sgst=0;
 
-        if(!tax.equals("null"))
-            sgst = Integer.parseInt(tax)/2;
-
-        tvtime.setText(time);
-        tvtype.setText(type);
-        tvtotal.setText("Rs."+total);
-        tvstatus.setText(status);
-        tvsgst.setText(sgst+"");
-        tvcgst.setText(sgst+"");
-        tvrate.setText(rate);
-        tvstime.setText(stime);
-        tvetime.setText(etime);
-        tvpaystatus.setText(status);
         tvjobstatus.setText(jobstatus);
         tvaddress.setText(address);
         tvjobto.setText(jobto);
         tvjobfor.setText(jobfor);
         tvdiscount.setText(discount);
 
-        if(status.equalsIgnoreCase("Completed")||status.equalsIgnoreCase("Cancelled")){
-            canbtn.setVisibility(View.GONE);
-        }else if(status.equalsIgnoreCase("Pending")||status.equalsIgnoreCase("In Progress")){
-
-            canbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    final AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
-                    alertbox.setMessage("Are you sure");
-                    alertbox.setTitle("Cancel");
-
-                    alertbox.setPositiveButton("OK",
-                            new DialogInterface.OnClickListener() {
-
-                                public void onClick(DialogInterface arg0,
-                                                    int arg1) {
-                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Bills").child("bill"+billno);
-                                    databaseReference.child("status").setValue("Cancelled");
-                                    canbtn.setVisibility(View.GONE);
-                                    tvpaystatus.setText("Cancelled");
-
-                                }
-                            })
-                            .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    alertbox.show();
-                }
-            });
-        }
+       */
 
     }
 

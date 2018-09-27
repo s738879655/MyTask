@@ -4,11 +4,11 @@ package com.demo.mytask;
 
 public class DishDetail {
 
-   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri;
+   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus;
 
    public DishDetail(){}
 
-    public DishDetail( String itemName,  String quantityAmount, String priceValue, String timeValue,String customStatus,String imageUri) {
+    public DishDetail( String itemName,  String quantityAmount, String priceValue, String timeValue,String customStatus,String imageUri,String checkboxStatus,String buttonStatus,String commentStatus) {
 
         this.itemName = itemName;
 
@@ -19,10 +19,37 @@ public class DishDetail {
         this.timeValue = timeValue;
         this.customStatus=customStatus;
         this.imageUri=imageUri;
+        this.checkboxStatus=checkboxStatus;
+        this.buttonStatus=buttonStatus;
+        this.commentStatus=commentStatus;
     }
 
     public String getImageUri() {
         return imageUri;
+    }
+
+    public String getCheckboxStatus() {
+        return checkboxStatus;
+    }
+
+    public void setCheckboxStatus(String checkboxStatus) {
+        this.checkboxStatus = checkboxStatus;
+    }
+
+    public String getButtonStatus() {
+        return buttonStatus;
+    }
+
+    public void setButtonStatus(String buttonStatus) {
+        this.buttonStatus = buttonStatus;
+    }
+
+    public String getCommentStatus() {
+        return commentStatus;
+    }
+
+    public void setCommentStatus(String commentStatus) {
+        this.commentStatus = commentStatus;
     }
 
     public void setImageUri(String imageUri) {

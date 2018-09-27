@@ -69,14 +69,32 @@ public class DishesListAdapter extends BaseAdapter {
         final String timeVal = bill_detail.getTimeValue();
         final String customStatus = bill_detail.getCustomStatus();
         final String imageUri=bill_detail.getImageUri();
+        final String checkboxStatus=bill_detail.getCheckboxStatus();
+        final String buttonStatus=bill_detail.getCommentStatus();
+        final String commentStatus=bill_detail.getButtonStatus();
 
 
 
 
 
-        if(customStatus.equalsIgnoreCase("true")){
+
+        if(customStatus.equalsIgnoreCase("true"))
+        {
+
             customMess.setVisibility(View.VISIBLE);
 
+        }
+        if(!(amountOfQuantity.trim()).equalsIgnoreCase("")||amountOfQuantity!=null)
+        {
+            quantityAmount.setVisibility(View.VISIBLE);
+            quantityHead.setVisibility(View.VISIBLE);
+        }
+
+
+        if(!(price.trim()).equalsIgnoreCase("")||price!=null)
+        {
+            priceValue.setVisibility(View.VISIBLE);
+            priceValue.setVisibility(View.VISIBLE);
         }
 
 
@@ -94,27 +112,18 @@ public class DishesListAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 Intent in = new Intent(context,Extend_Dish.class);
-           /*     in.putExtra();
-                in.putExtra("billno",billno);
-                in.putExtra("type",type);
-                in.putExtra("name",name);
-                in.putExtra("status",status);
-                in.putExtra("total",total);
-                in.putExtra("day",day);
-                in.putExtra("month",month);
-                in.putExtra("date",date);
-                in.putExtra("rate",bill_detail.getRate());
-                in.putExtra("tax",bill_detail.getTax());
-                in.putExtra("jobstatus",bill_detail.getJobstatus());
-                in.putExtra("address",bill_detail.getAddress());
-                in.putExtra("ofwhat",bill_detail.getOfwhat());
-                in.putExtra("whereto",bill_detail.getWhereto());
-                in.putExtra("jobstatus",bill_detail.getJobstatus());
-                in.putExtra("stime",bill_detail.getStarttime());
-                in.putExtra("etime",bill_detail.getEndtime());
-                in.putExtra("discount",bill_detail.getDiscount());
+                in.putExtra("itemName",nameOfItem);
+                in.putExtra("quantityAmount",amountOfQuantity);
+                in.putExtra("priceValue",price);
+                in.putExtra("timeValue",price);
+                in.putExtra("customStatus",price);
+                in.putExtra("checkStatus",price);
+                in.putExtra("buttonStatus",price);
+                in.putExtra("commentStatus",price);
+                in.putExtra("imageUri",imageUri);
+
                 context.startActivity(in);
-                  */
+
            Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
