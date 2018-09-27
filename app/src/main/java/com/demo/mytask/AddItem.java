@@ -255,28 +255,6 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
     }
 }
 
-//class MyAdapter extends ArrayAdapter {
-//
-//    ArrayList<String> arrayList;
-//    Context context;
-//
-//    public MyAdapter(@NonNull Context context, int resource,ArrayList<String> arrayList) {
-//        super(context, resource);
-//        this.context = context;
-//        this.arrayList = arrayList;
-//    }
-//
-//    public View gegtView(int posotion, View v, ViewGroup p){
-//        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View row = layoutInflater.inflate(R.layout.button_list,p,false);
-//
-//        TextView tv1 = row.findViewById(R.id.buttonname);
-//        TextView tv2 = row.findViewById(R.id.buttonname2);
-//
-//        return row;
-//    }
-//}
-
 class MyItemRecyclerViewAdapter extends BaseAdapter {
 
     private final List<String> button;
@@ -322,7 +300,9 @@ class MyItemRecyclerViewAdapter extends BaseAdapter {
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
     }
-}class MyItemRecyclerViewAdapter2 extends BaseAdapter {
+}
+
+class MyItemRecyclerViewAdapter2 extends BaseAdapter {
 
     private final List<String> ingridientlist;
     private final Context context;
