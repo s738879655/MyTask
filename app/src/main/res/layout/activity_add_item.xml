@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.demo.mytask.AddItem">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:id="@+id/fl1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/SelectSection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select Section :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/sectionspinner"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/categoryspinner"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/SelectSection" />
+
+                        <TextView
+                            android:id="@+id/SelectCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/SelectSection"
+                            android:layout_marginTop="10dp"
+                            android:text="Select Category :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/categoryspinner"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/sectionspinner"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@id/SelectSection" />
+
+                    </RelativeLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fl1"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/ItemImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Item Image :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+
+                        <ImageView
+                            android:id="@+id/itemimage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/ItemImage" />
+
+                    </RelativeLayout>
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/fl3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fl2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/ItemName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Item Name :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemName"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemName"
+                            android:ems="10"
+                            android:hint="Enter Item Name here"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemName"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Price :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemPrice"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemPrice"
+                            android:ems="10"
+                            android:hint="Enter Item Price here"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemPrice"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Quantity :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemquantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemQuantity"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemQuantity"
+                            android:ems="10"
+                            android:hint="Enter Item Name here"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemQuantity"
+                            android:layout_marginTop="10dp"
+                            android:text="Quantity Type :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/itemtype"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/itemquantity"
+                            android:layout_below="@+id/itemquantity" />
+
+                        <TextView
+                            android:id="@+id/ItemTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemType"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Time :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemTime"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemTime"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="Click to choose time"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemTime"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Content :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemcontent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemContent"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemContent"
+                            android:ems="10"
+                            android:hint="Item Content"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemDisclaimer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemContent"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Disclaimer :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemdisclaimer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemDisclaimer"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemDisclaimer"
+                            android:ems="10"
+                            android:hint="Item Disclaimer"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/ItemDiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemDisclaimer"
+                            android:layout_marginTop="10dp"
+                            android:text="Item Discount(%) :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/itemdiscount"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/ItemDiscount"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/ItemDiscount"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/SelectIngredient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemDiscount"
+                            android:layout_marginTop="10dp"
+                            android:text="Select Ingredient :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <CheckBox
+                            android:id="@+id/buttoncb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/SelectIngredient"
+                            android:layout_below="@+id/ItemDiscount"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/SelectIngredient"
+                            android:text="Button" />
+
+                        <CheckBox
+                            android:id="@+id/commentcb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/buttoncb"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/SelectIngredient"
+                            android:text="Comment" />
+
+                        <CheckBox
+                            android:id="@+id/checkboxcb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/commentcb"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/SelectIngredient"
+                            android:text="Checkbox" />
+
+                        <ImageView
+                            android:id="@+id/timechoos"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignEnd="@+id/itemtime"
+                            android:layout_below="@+id/itemtype"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="12dp"
+                            app:srcCompat="@drawable/clock_png" />
+
+                    </RelativeLayout>
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fl4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fl3"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/HeadingName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Heading Name :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/headingname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/HeadingName"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/HeadingName"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/HeadingPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/HeadingName"
+                            android:layout_marginTop="10dp"
+                            android:text="Heading Note :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/headingprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/HeadingPrice"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/HeadingPrice"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <RelativeLayout
+                            android:id="@+id/lllist"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_below="@+id/HeadingPrice"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginTop="10dp"
+                            android:focusable="true"
+                            android:orientation="horizontal">
+
+                            <ListView
+                                android:id="@+id/buttonlist"
+                                android:layout_width="match_parent"
+                                android:layout_height="fill_parent" />
+
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:id="@+id/addmorebtns"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/lllist"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="+ Add More Buttons :"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fl4"
+                    android:visibility="gone">
+
+                    <FrameLayout
+                        android:id="@+id/fl5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="30dp">
+
+                        <ListView
+                            android:id="@+id/ingridientlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/addmoreingredient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fl5"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="+ Add Ingridient"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/submitbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl1"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="50dp"
+                android:text="Submit" />
+
+            <Button
+                android:id="@+id/resetbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/rl1"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="82dp"
+                android:text="Reset" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
