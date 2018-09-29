@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Extend_Dish extends AppCompatActivity {
 
-    private TextView tvtype,tvtime,tvstatus,tvrate,tvjobstatus,tvsgst,tvcgst,tvaddress,tvdiscount,tvjobfor,tvjobto,tvstime,tvetime,tvttime,tvtotal,tvpaystatus;
+    private TextView itemName1,quantityAmount1,priceValue1,timeValue1,quantityHead1,priceHead1,timeHead1,btnListHead,btnListNote,checkBoxListHead,checkBoxListNote,commentHead;
     private Button canbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +38,16 @@ public class Extend_Dish extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(nameOfItem);
 
-    /*    tvtype = findViewById(R.id.type);
-        tvtime = findViewById(R.id.time);
-        tvstatus = findViewById(R.id.status);
-        tvjobstatus = findViewById(R.id.jobstatus);
-        tvsgst = findViewById(R.id.sgst);
-        tvcgst = findViewById(R.id.cgst);
-        tvaddress = findViewById(R.id.address);
-        tvdiscount = findViewById(R.id.discount);
-        tvjobfor = findViewById(R.id.servicefor);
-        tvjobto = findViewById(R.id.whereto);
-        tvstime = findViewById(R.id.starttime);
-        tvetime = findViewById(R.id.endtime);
-        tvttime = findViewById(R.id.totaltime);
-        tvtotal = findViewById(R.id.grandtot);
-        tvpaystatus = findViewById(R.id.paystat);
-        tvrate = findViewById(R.id.rate);
-        canbtn = findViewById(R.id.canbtn);
+       itemName1 = findViewById(R.id.itemName1);
+       quantityAmount1 = findViewById(R.id.quantityAmount1);
+       quantityHead1= findViewById(R.id.quantityHead1);
+       priceHead1= findViewById(R.id.priceHead1);
+       priceValue1= findViewById(R.id.priceValue1);
+        timeValue1= findViewById(R.id.timeValue1);
+        timeHead1= findViewById(R.id.timeHead1);
 
 
-        tvjobstatus.setText(jobstatus);
-        tvaddress.setText(address);
-        tvjobto.setText(jobto);
-        tvjobfor.setText(jobfor);
-        tvdiscount.setText(discount);
 
-       */
 
     }
 

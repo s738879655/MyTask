@@ -39,7 +39,7 @@
 
     <!-- label text-->
     <string name="label_order_summary">Order Summary</string>
-    <string name="label_add_message">Add a message here.</string>
+    <string name="label_add_message">Add a Special Comment.</string>
     <string name="label_use_coupon">Use a coupon.</string>
     <string name="label_subtotal">Subtotal</string>
     <string name="label_tax">Tax</string>
