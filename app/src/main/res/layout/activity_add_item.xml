@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -42,8 +44,8 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_alignStart="@+id/categoryspinner"
-                            android:layout_marginStart="10dp"
-                            android:layout_toRightOf="@id/SelectSection" />
+                            android:layout_alignTop="@+id/SelectSection"
+                            android:layout_toEndOf="@+id/SelectSection" />
 
                         <TextView
                             android:id="@+id/SelectCategory"
@@ -59,10 +61,8 @@
                             android:id="@+id/categoryspinner"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/sectionspinner"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_toEndOf="@id/SelectSection" />
+                            android:layout_alignTop="@+id/SelectCategory"
+                            android:layout_toEndOf="@+id/SelectCategory" />
 
                     </RelativeLayout>
                 </FrameLayout>
@@ -73,7 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/fl1"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -91,8 +92,8 @@
 
                         <ImageView
                             android:id="@+id/itemimage"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             android:layout_marginStart="20dp"
                             android:layout_toEndOf="@+id/ItemImage" />
 
@@ -106,7 +107,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/fl2"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    >#android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -150,7 +152,7 @@
                             android:layout_toEndOf="@+id/ItemPrice"
                             android:ems="10"
                             android:hint="Enter Item Price here"
-                            android:inputType="textPersonName" />
+                            android:inputType="number" />
 
                         <TextView
                             android:id="@+id/ItemQuantity"
@@ -179,7 +181,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ItemQuantity"
                             android:layout_marginTop="10dp"
-                            android:text="Quantity Type :"
+                            android:text="Item Type :"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="18sp" />
 
@@ -187,14 +189,33 @@
                             android:id="@+id/itemtype"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/itemquantity"
-                            android:layout_below="@+id/itemquantity" />
+                            android:layout_marginLeft="20dp"
+                            android:layout_alignTop="@+id/ItemType"
+                            android:layout_toEndOf="@+id/ItemType" />
+
+                        <TextView
+                            android:id="@+id/QuantityType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ItemType"
+                            android:layout_marginTop="10dp"
+                            android:text="Quantity Type :"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/quantitytype"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_alignTop="@+id/QuantityType"
+                            android:layout_toEndOf="@+id/QuantityType" />
 
                         <TextView
                             android:id="@+id/ItemTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/ItemType"
+                            android:layout_below="@+id/QuantityType"
                             android:layout_marginTop="10dp"
                             android:text="Item Time :"
                             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -213,6 +234,17 @@
                             android:focusable="false"
                             android:hint="Click to choose time"
                             android:inputType="textPersonName" />
+
+
+                        <ImageView
+                            android:id="@+id/timechoos"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignEnd="@+id/itemtime"
+                            android:layout_alignTop="@+id/itemtime"
+                            android:layout_marginRight="5dp"
+                            app:srcCompat="@drawable/clock_png" />
 
                         <TextView
                             android:id="@+id/ItemContent"
@@ -314,15 +346,6 @@
                             android:layout_toEndOf="@+id/SelectIngredient"
                             android:text="Checkbox" />
 
-                        <ImageView
-                            android:id="@+id/timechoos"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_alignEnd="@+id/itemtime"
-                            android:layout_below="@+id/itemtype"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="12dp"
-                            app:srcCompat="@drawable/clock_png" />
 
                     </RelativeLayout>
 
