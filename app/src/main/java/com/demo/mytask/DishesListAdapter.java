@@ -111,22 +111,22 @@ public class DishesListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                Intent in = new Intent(context,Extend_Dish.class);
-                in.putExtra("itemName",nameOfItem);
-                in.putExtra("quantityAmount",amountOfQuantity);
-                in.putExtra("priceValue",price);
-                in.putExtra("timeValue",price);
-                in.putExtra("customStatus",price);
-                in.putExtra("checkStatus",price);
-                in.putExtra("buttonStatus",price);
-                in.putExtra("commentStatus",price);
-                in.putExtra("imageUri",imageUri);
+                       Intent in = new Intent(context,Extend_Dish.class);
+        in.putExtra("itemName",nameOfItem);
+        in.putExtra("quantityAmount",amountOfQuantity);
+        in.putExtra("priceValue",price);
+        in.putExtra("timeValue",price);
+        in.putExtra("customStatus",price);
+        in.putExtra("checkStatus",price);
+        in.putExtra("buttonStatus",price);
+        in.putExtra("commentStatus",price);
+        in.putExtra("imageUri",imageUri);
 
-                context.startActivity(in);
+        context.startActivity(in);
 
-           Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+    }
+});
 
         return view;
     }

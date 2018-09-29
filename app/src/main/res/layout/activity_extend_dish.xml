@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/detailView"
+            android:id="@+id/detailView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="0dp"
@@ -22,7 +22,7 @@
                 android:id="@+id/container">
 
                 <ImageView
-                    android:id="@+id/dishImage"
+                    android:id="@+id/dishImage1"
                     android:layout_width="128dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
@@ -33,23 +33,26 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/itemName"
+        android:id="@+id/itemName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="ITEM NAME"
+        android:layout_margin="3dp"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
           <TextView
-                android:id="@+id/quantityHead"
+                android:id="@+id/quantityHead1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -62,10 +65,9 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/quantityAmount"
+                android:id="@+id/quantityAmount1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="70dp"
                 android:text="12 Piece"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="16sp"
@@ -74,15 +76,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/quantityHead"
-                android:orientation="horizontal">
+                android:layout_below="@+id/quantityHead1"
+                android:orientation="horizontal"
+                android:layout_margin="3dp">
 
                 <TextView
-                    android:id="@+id/priceHead"
+                    android:id="@+id/priceHead1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/itemName"
-                    android:layout_below="@+id/quantityHead"
+                    android:layout_alignStart="@+id/itemName1"
+                    android:layout_below="@+id/quantityHead1"
                     android:hint="PRICE :"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat"
@@ -90,7 +93,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/priceValue"
+                    android:id="@+id/priceValue1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 6 $"
@@ -99,9 +102,10 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
             <TextView
-                android:id="@+id/timeHead"
+                android:id="@+id/timeHead1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time :"
@@ -110,7 +114,7 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/timeValue"
+                android:id="@+id/timeValue1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1Hour"
@@ -124,28 +128,116 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/customMess"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/container"
-                android:layout_marginLeft="40dp"
-                android:text="Customization is Availabale !"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:visibility="visible" />
+
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/btnListHead"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:text="Button Heading Name "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/detailView1"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp" />
 
         <TextView
+            android:id="@+id/btnListNote"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:text="Please Select  from one of the following"
+            android:textSize="20dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/btnListHead"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="124dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView1"
+            app:layout_constraintTop_toBottomOf="@+id/btnListNote"
+            android:orientation="horizontal">
+
+
+
+            <GridView
+                android:id="@+id/btnList"
+                android:layout_width="fill_parent"
+                android:numColumns="1"
+                android:layout_height="wrap_content"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                android:layout_gravity="right|top" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/checkBoxListHead"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:text="CheckBox Heading Name :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/listView1"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="124dp" />
+        <TextView
+            android:id="@+id/checkBoxListNote"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:text="Please select from the following"
+            android:textSize="20dp"
+
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxListHead"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="124dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView2"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxListNote"
+            android:orientation="horizontal">
+
+
+
+            <GridView
+                android:id="@+id/checkList"
+                android:layout_width="fill_parent"
+                android:numColumns="1"
+                android:layout_height="wrap_content"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                android:layout_gravity="right|top" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/commentHead"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:text="Special Comment  :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/listView2"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="124dp" />
+
+        <EditText
             android:id="@+id/tv_message"
             android:layout_width="0dp"
-            android:layout_height="38dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edge_primary_rounded"
             android:orientation="vertical"
             android:paddingBottom="8dp"
@@ -155,7 +247,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailView" />
+            app:layout_constraintTop_toBottomOf="@+id/commentHead" />
 
         <TextView
             android:id="@+id/tv_coupon"
