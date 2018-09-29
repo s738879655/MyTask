@@ -1,17 +1,12 @@
 package com.demo.mytask;
 
 import android.content.Context;
-import android.content.Intent;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -49,7 +44,7 @@ public class buttonListAdapter extends BaseAdapter {
 
 
         if(view==null)
-            view= LayoutInflater.from(context).inflate(R.layout.btnPriceList,parent,false);
+            view= LayoutInflater.from(context).inflate(R.layout.btnpriclist,parent,false);
         RadioButton btnName=view.findViewById(R.id.buttonRadio);
         TextView btnValue=view.findViewById(R.id.buttonValue);
 
