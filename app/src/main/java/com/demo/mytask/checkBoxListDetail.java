@@ -2,11 +2,10 @@ package com.demo.mytask;
 
 public class checkBoxListDetail {
 
-    String btnName,btnValue;
+    String btnName;
 
-    public checkBoxListDetail(String btnName, String btnValue) {
+    public checkBoxListDetail(String btnName) {
         this.btnName = btnName;
-        this.btnValue = btnValue;
     }
 
     public checkBoxListDetail() {
@@ -18,13 +17,5 @@ public class checkBoxListDetail {
 
     public void setBtnName(String btnName) {
         this.btnName = btnName;
-    }
-
-    public String getBtnValue() {
-        return btnValue;
-    }
-
-    public void setBtnValue(String btnValue) {
-        this.btnValue = btnValue;
     }
 }

@@ -4,17 +4,27 @@ package com.demo.mytask;
 
 public class DishDetail {
 
-   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus;
+   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus,toppingstatus,itemtype,discount;
 
    public DishDetail(){}
 
-    public DishDetail( String itemName,  String quantityAmount, String priceValue, String timeValue,String customStatus,String imageUri,String checkboxStatus,String buttonStatus,String commentStatus) {
+    public String getItemtype() {
+        return itemtype;
+    }
+
+    public void setItemtype(String itemtype) {
+        this.itemtype = itemtype;
+    }
+
+    public DishDetail(String itemName, String quantityAmount, String priceValue, String itemtype, String timeValue, String customStatus, String imageUri, String checkboxStatus, String buttonStatus, String commentStatus,String toppingstatus,String discount) {
 
         this.itemName = itemName;
-
+        this.toppingstatus = toppingstatus;
         this.quantityAmount = quantityAmount;
-
+        this.discount = discount;
         this.priceValue = priceValue;
+        this.itemtype = itemtype;
+
 
         this.timeValue = timeValue;
         this.customStatus=customStatus;
