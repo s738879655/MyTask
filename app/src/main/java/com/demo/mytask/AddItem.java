@@ -1,8 +1,10 @@
 package com.demo.mytask;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -67,6 +69,7 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
     FirebaseDatabase database ;
     DatabaseReference myRef ;
     ImageButton imgbtn;
+    String name = "", price = "", time = "", quantity = "", discount = "", content = "", disclaimer = "", section = "", category = "", itemtype = "", quantype = "";
 
 
 
@@ -192,23 +195,37 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(AddItem.this,""+position,Toast.LENGTH_SHORT).show();
-
                 if(position == 1){
                     fl2.setVisibility(View.VISIBLE);
                     fl3.setVisibility(View.VISIBLE);
                     spinner2.setEnabled(true);
                     spinner2.setAdapter(null);
+                    buttoncb.setChecked(false);
+                    commentcb.setChecked(false);
+                    checkcb.setChecked(false);
+                    toppingcb.setChecked(false);
                 }
                 else if(position == 2){
                     spinner2.setEnabled(true);
                     spinnerArrayAdapter2.setDropDownViewResource(R.layout.spinner_item);
                     spinner2.setAdapter(spinnerArrayAdapter2);
+                    buttoncb.setChecked(false);
+                    commentcb.setChecked(false);
+                    checkcb.setChecked(false);
+                    toppingcb.setChecked(false);
                 }
                 else{
                     fl2.setVisibility(View.GONE);
                     fl3.setVisibility(View.GONE);
+                    fl4.setVisibility(View.GONE);
+                    fl6.setVisibility(View.GONE);
+                    rl2.setVisibility(View.GONE);
+                    spinner2.setAdapter(null);
                     spinner2.setEnabled(false);
+                    buttoncb.setChecked(false);
+                    commentcb.setChecked(false);
+                    checkcb.setChecked(false);
+                    toppingcb.setChecked(false);
 
                 }
             }
@@ -224,10 +241,21 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
                 if(position==0){
                     fl2.setVisibility(View.GONE);
                     fl3.setVisibility(View.GONE);
+                    fl4.setVisibility(View.GONE);
+                    fl6.setVisibility(View.GONE);
+                    rl2.setVisibility(View.GONE);
+                    buttoncb.setChecked(false);
+                    commentcb.setChecked(false);
+                    checkcb.setChecked(false);
+                    toppingcb.setChecked(false);
 
                 }else{
                     fl2.setVisibility(View.VISIBLE);
                     fl3.setVisibility(View.VISIBLE);
+                    buttoncb.setChecked(false);
+                    commentcb.setChecked(false);
+                    checkcb.setChecked(false);
+                    toppingcb.setChecked(false);
                 }
             }
 
@@ -351,15 +379,15 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = itemname.getText().toString().trim();
-                String price = itemprice.getText().toString().trim();
-                String time = timechoose.getText().toString().trim();
-                String quantity = itemquantity.getText().toString().trim();
-                String discount = itemdiscount.getText().toString().trim();
-                String content = itemcontent.getText().toString().trim();
-                String disclaimer = itemdisclaimer.getText().toString().trim();
-                String section = spinner1.getSelectedItem().toString().trim();
-                String category = "";
+                name = itemname.getText().toString().trim();
+                price = itemprice.getText().toString().trim();
+                time = timechoose.getText().toString().trim();
+                quantity = itemquantity.getText().toString().trim();
+                discount = itemdiscount.getText().toString().trim();
+                content = itemcontent.getText().toString().trim();
+                disclaimer = itemdisclaimer.getText().toString().trim();
+                section = spinner1.getSelectedItem().toString().trim();
+                category = "";
                 if (section.equals("Menu Item")) {
                     category = spinner2.getSelectedItem().toString().trim();
                     typee = category;
@@ -367,8 +395,8 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
                     category = section;
                     typee = category;
                 }
-                String itemtype = spinner3.getSelectedItem().toString().trim();
-                String quantype = spinner4.getSelectedItem().toString().trim();
+                itemtype = spinner3.getSelectedItem().toString().trim();
+                quantype = spinner4.getSelectedItem().toString().trim();
 
 
                 if (filepath == null) {
@@ -391,6 +419,9 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
                 }
                 if (discount.equals("") || discount == null) {
                     discount = "0";
+                }else if(Integer.parseInt(discount) > 100){
+                    itemdiscount.setError("discount cannot exceed 100");
+                    return;
                 }
                 if (content.equals("") || content == null) {
                     content = "0";
@@ -487,23 +518,40 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
                         ref3.child("tpnglist").child("listtpng").push().setValue(btn);
                     }
                 }
-                if (uploadFile(filepath)){
-                    if(imgpath.equals("fail")) {
-                        Toast.makeText(AddItem.this, "Please Try Again", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    DishDetail dishDetail = new DishDetail(name,quantity, price, itemtype, time, ((btncb||ingcb)?true:false) + "", imgpath, ingcb+"", btncb+"", cmntcb+"",tpngcb+"",discount);
-                    myRef.setValue(dishDetail);
-                }
 
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
+                alertbox.setMessage("Confirm Submission");
+                alertbox.setTitle("Confirm Submission");
 
+                alertbox.setPositiveButton("CONFIRM",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                if (uploadFile(filepath)){
+                                    if(imgpath.equals("fail")) {
+                                        Toast.makeText(AddItem.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                    DishDetail dishDetail = new DishDetail(name,quantity, price, itemtype, time, ((btncb||ingcb)?true:false) + "", imgpath, ingcb+"", btncb+"", cmntcb+"",tpngcb+"",discount,disclaimer,quantype);
+                                    myRef.setValue(dishDetail);
+
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                alertbox.show();
             }
         });
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(AddItem.this,AddItem.class));
                 finish();
             }
@@ -564,6 +612,8 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
                                                 Log.d("uuuuuuu",imgpath);
                                                 DatabaseReference db = FirebaseDatabase.getInstance().getReference("item").child(typee).child(namee).child("imageUri");
                                                 db.setValue(imgpath);
+                                                startActivity(new Intent(AddItem.this,AddItem.class));
+                                                finish();
                                                 //Do what you want with the url
                                             }
                                         });
