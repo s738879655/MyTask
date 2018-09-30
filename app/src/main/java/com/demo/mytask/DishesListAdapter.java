@@ -142,7 +142,7 @@ if(!imageUri.equalsIgnoreCase(""))
             @Override
             public void onClick(View v) {
 
-                       Intent in = new Intent(context,Extend_Dish.class);
+        Intent in = new Intent(context,Extend_Dish.class);
         in.putExtra("itemName",nameOfItem);
         in.putExtra("quantityAmount",amountOfQuantity);
         in.putExtra("priceValue",price);

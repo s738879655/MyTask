@@ -288,10 +288,25 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
 
                                 }
                             })
-                            .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            .setNegativeButton("Add New", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Intent in = new Intent(Extend_Dish.this,Extend_Dish.class);
+                                    in.putExtra("itemName",nameOfItem);
+                                    in.putExtra("quantityAmount",amountOfQuantity);
+                                    in.putExtra("priceValue",price);
+                                    in.putExtra("timeValue",timeVal);
+                                    in.putExtra("customStatus",customStatus);
+                                    in.putExtra("checkStatus",checkboxStatus);
+                                    in.putExtra("buttonStatus",buttonStatus);
+                                    in.putExtra("commentStatus",commentStatus);
+                                    in.putExtra("imageUri",imageUri);
+                                    in.putExtra("discount",discount);
+                                    in.putExtra("itemType",itemType);
+                                    in.putExtra("disclaimer",disclaimer);
+                                    in.putExtra("toppingStatus",toppingStatus);
 
+                                    startActivity(in);
                                 }
                             });
                     alertbox.show();
@@ -313,7 +328,7 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
                         new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface arg0, int arg1) {
-                                startActivity(new Intent(Extend_Dish.this,Extend_Dish.class));
+                                startActivity(new Intent(Extend_Dish.this,ListOoFDishes.class));
                                 finish();
                             }
                         });
