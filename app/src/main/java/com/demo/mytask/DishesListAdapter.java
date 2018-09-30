@@ -2,6 +2,7 @@ package com.demo.mytask;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,6 +61,8 @@ public class DishesListAdapter extends BaseAdapter {
         TextView timeHead = view.findViewById(R.id.timeHead);
         TextView timeValue = view.findViewById(R.id.timeValue);
         TextView customMess = view.findViewById(R.id.customMess);
+        ImageView vegimage=view.findViewById(R.id.vegImage);
+        TextView discountTextView=view.findViewById(R.id.discount);
 
         RelativeLayout linearLayout = view.findViewById(R.id.vlinearlayout);
 
@@ -72,19 +77,42 @@ public class DishesListAdapter extends BaseAdapter {
         final String checkboxStatus=bill_detail.getCheckboxStatus();
         final String buttonStatus=bill_detail.getCommentStatus();
         final String commentStatus=bill_detail.getButtonStatus();
+        final String discount=bill_detail.getDiscount();
+        final String itemType=bill_detail.getItemtype();
+        final String disclaimer=bill_detail.getItemtype();
 
 
+        Log.d("aaa",nameOfItem+"    "+amountOfQuantity+"  "+price+"  "+timeVal+"    "+customStatus+"    "+checkboxStatus+"  "+buttonStatus+"    "+commentStatus+"   "+discount  );
 
 
+if(itemType.equalsIgnoreCase("veg"))
+{
+    vegimage.setBackgroundResource(R.mipmap.veg);
+}
+else if (itemType.equalsIgnoreCase("egg"))
+    vegimage.setBackgroundResource(R.mipmap.download);
+else
+{
+    vegimage.setBackgroundResource(R.mipmap.nonveg);
+}
+
+        if(!discount.equalsIgnoreCase("0"))
+        {
+            discountTextView.setText(discount+" %");
+        }
+        else
+            discountTextView.setText("");
 
 
-        if(customStatus.equalsIgnoreCase("true"))
+        if(!customStatus.equalsIgnoreCase("true"))
         {
 
-            customMess.setVisibility(View.VISIBLE);
+            customMess.setVisibility(View.INVISIBLE);
 
         }
-        if((!(amountOfQuantity.trim()).equalsIgnoreCase("0"))&&amountOfQuantity!=null)
+        else
+            customMess.setVisibility(View.VISIBLE);
+        if((!(amountOfQuantity.trim()).equalsIgnoreCase("0")))
         {
             quantityAmount.setVisibility(View.VISIBLE);
             quantityHead.setVisibility(View.VISIBLE);
@@ -93,11 +121,12 @@ public class DishesListAdapter extends BaseAdapter {
 
         if((!(timeVal.trim()).equalsIgnoreCase("0"))&&timeVal!=null)
         {
-           timeHead.setVisibility(View.VISIBLE);
-           timeValue.setVisibility(View.VISIBLE);
+            timeHead.setVisibility(View.VISIBLE);
+            timeValue.setVisibility(View.VISIBLE);
         }
 
-
+if(imageUri!=null)
+    Picasso.with(context).load(imageUri).into(dishImage);
 
         itemName.setText(nameOfItem);
         quantityAmount.setText(amountOfQuantity);
@@ -121,6 +150,9 @@ public class DishesListAdapter extends BaseAdapter {
         in.putExtra("buttonStatus",buttonStatus);
         in.putExtra("commentStatus",commentStatus);
         in.putExtra("imageUri",imageUri);
+        in.putExtra("discount",discount);
+        in.putExtra("itemType",itemType);
+        in.putExtra("disclaimer",disclaimer);
 
         context.startActivity(in);
 

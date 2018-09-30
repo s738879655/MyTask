@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
    //       DatabaseReference databaseReference = database.getReference().child("ItemName").child("btnList");
    //     databaseReference.push().setValue(bill_detail);
 
-        Intent intent=new Intent(this,AddItem.class);
+        Intent intent=new Intent(this,ListOoFDishes.class);
         startActivity(intent);
     }
 }

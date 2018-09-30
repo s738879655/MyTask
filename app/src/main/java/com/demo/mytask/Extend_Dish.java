@@ -2,6 +2,7 @@ package com.demo.mytask;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -26,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +38,10 @@ public class Extend_Dish extends AppCompatActivity {
     private TextView itemName1,quantityAmount1,priceValue1,timeValue1,quantityHead1,priceHead1,timeHead1,btnListHead,btnListNote,checkBoxListHead,checkBoxListNote,commentHead;
     private Button canbtn;
     LinearLayout listView1,listView2;
-    TextView tv_total,tv_subtotal;
+    TextView tv_total,tv_subtotal,discount1,disclaimerTextview;
     EditText tv_message;
     GridView gridView;
+    ImageView dishimage,vegimage;
     GridView gridView1;
     DatabaseReference databaseReference;
     DatabaseReference databaseReference1;
@@ -60,12 +64,16 @@ public class Extend_Dish extends AppCompatActivity {
         final String checkboxStatus = getIntent().getStringExtra("checkStatus");
         final String buttonStatus = getIntent().getStringExtra("buttonStatus");
         final String commentStatus = getIntent().getStringExtra("commentStatus");
+        final String itemType= getIntent().getStringExtra("itemType");
+        final String discount = getIntent().getStringExtra("discount");
+        final String disclaimer = getIntent().getStringExtra("disclaimer");
 
         Toast.makeText(this, checkboxStatus, Toast.LENGTH_SHORT).show();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         gridView = findViewById(R.id.btnList);
         gridView1 = findViewById(R.id.checkList);
+        disclaimerTextview=findViewById(R.id.showDisclaimer);
         getSupportActionBar().setTitle(nameOfItem);
 if(buttonStatus.equalsIgnoreCase("true"))
 {
@@ -89,8 +97,12 @@ if(checkboxStatus.equalsIgnoreCase("true"))
 
 }
 
+if(disclaimer!=null)
+    disclaimerTextview.setText(disclaimer);
 
 
+dishimage=findViewById(R.id.dishImage1);
+vegimage=findViewById(R.id.vegImage1);
         itemName1 = findViewById(R.id.itemName1);
         quantityAmount1 = findViewById(R.id.quantityAmount1);
         quantityHead1 = findViewById(R.id.quantityHead1);
@@ -108,6 +120,7 @@ if(checkboxStatus.equalsIgnoreCase("true"))
         listView2 = findViewById(R.id.listView2);
         tv_total=findViewById(R.id.tv_total);
         tv_subtotal=findViewById(R.id.tv_subtotal);
+        discount1=findViewById(R.id.discount1);
 
 
 
@@ -119,6 +132,16 @@ if(checkboxStatus.equalsIgnoreCase("true"))
         priceValue1.setText(" ₹ "+price);
         if(!timeVal.equalsIgnoreCase(""))
         timeValue1.setText(timeVal);
+
+
+        if(!discount.equalsIgnoreCase("0"))
+        {
+            discount1.setText(discount+" %");
+        }
+        else
+            discount1.setText("");
+
+
 
         if(checkboxStatus.equalsIgnoreCase("true")) {
 
@@ -162,7 +185,18 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
 
         }
 
-        if (!commentStatus.equalsIgnoreCase("true")) {
+
+        if(itemType.equalsIgnoreCase("veg"))
+        {
+            vegimage.setBackgroundResource(R.mipmap.veg);
+        }
+        else if (itemType.equalsIgnoreCase("egg"))
+            vegimage.setBackgroundResource(R.mipmap.download);
+        else
+            vegimage.setBackgroundResource(R.mipmap.nonveg);
+
+
+            if (!commentStatus.equalsIgnoreCase("true")) {
             commentHead.setVisibility(View.GONE);
             tv_message.setVisibility(View.GONE);
         }
@@ -177,6 +211,19 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
             btnListNote.setVisibility(View.GONE);
             listView1.setVisibility(View.GONE);
         }
+        if((!(timeVal.trim()).equalsIgnoreCase("0"))&&timeVal!=null)
+        {
+            timeHead1.setVisibility(View.VISIBLE);
+            timeValue1.setVisibility(View.VISIBLE);
+        }
+        if((!(amountOfQuantity).equalsIgnoreCase("0")))
+        {
+            quantityAmount1.setVisibility(View.VISIBLE);
+            quantityHead1.setVisibility(View.VISIBLE);
+        }
+
+        if(imageUri!=null)
+            Picasso.with(this).load(imageUri).into(dishimage);
 
 
 
@@ -326,7 +373,7 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
         }
 
         int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
+        for (int i = 0; i < listAdapter.getCount(); i+=2) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
@@ -335,6 +382,7 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight
                 + (listView.getHorizontalSpacing() * (listAdapter.getCount() - 1));
+
         listView.setLayoutParams(params);
         listView.requestLayout();
 

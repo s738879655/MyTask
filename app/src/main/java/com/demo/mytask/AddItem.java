@@ -147,7 +147,7 @@ public class AddItem extends AppCompatActivity implements NumberPicker.OnValueCh
         quantypelist.add("Piece");
         typelist.add("Veg");
         typelist.add("Egg");
-        typelist.add("Non-Veg.");
+        typelist.add("Non-Veg");
 
         /******************************************************************/
         //arrayadapter for spinners

@@ -4,7 +4,7 @@ package com.demo.mytask;
 
 public class DishDetail {
 
-   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus,toppingstatus,itemtype,discount;
+   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus,toppingstatus,itemtype,discount,disclaimer;
 
    public DishDetail(){}
 
@@ -32,6 +32,30 @@ public class DishDetail {
         this.checkboxStatus=checkboxStatus;
         this.buttonStatus=buttonStatus;
         this.commentStatus=commentStatus;
+    }
+
+    public String getDisclaimer() {
+        return disclaimer;
+    }
+
+    public void setDisclaimer(String disclaimer) {
+        this.disclaimer = disclaimer;
+    }
+
+    public String getToppingstatus() {
+        return toppingstatus;
+    }
+
+    public void setToppingstatus(String toppingstatus) {
+        this.toppingstatus = toppingstatus;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public String getImageUri() {
