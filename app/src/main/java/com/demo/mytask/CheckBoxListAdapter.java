@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -14,12 +15,12 @@ import java.util.List;
  * Created by sudha on 18-Aug-18.
  */
 
-public class buttonListAdapter extends BaseAdapter {
+public class CheckBoxListAdapter extends BaseAdapter {
 
-    private final List<buttonListDetail> dish_lists;
+    private final List<checkBoxListDetail> dish_lists;
     private final Context context;
 
-    buttonListAdapter(Context context, List<buttonListDetail> bill_lists) {
+    CheckBoxListAdapter(Context context, List<checkBoxListDetail> bill_lists) {
         this.dish_lists = bill_lists;
         this.context = context;
     }
@@ -44,20 +45,19 @@ public class buttonListAdapter extends BaseAdapter {
 
 
         if(view==null)
-            view= LayoutInflater.from(context).inflate(R.layout.btnpricelist,parent,false);
-        RadioButton btnName=view.findViewById(R.id.buttonRadio);
-        TextView btnValue=view.findViewById(R.id.buttonValue);
+            view= LayoutInflater.from(context).inflate(R.layout.checkboxlist,parent,false);
+
+         CheckBox checkBox=view.findViewById(R.id.checkBox1);
 
 
 
 
-        final buttonListDetail bill_detail = (buttonListDetail) getItem(position);
+        final checkBoxListDetail bill_detail = (checkBoxListDetail) getItem(position);
 
     final String nameOfButton= bill_detail.getBtnName();
-    final String valueofButton = bill_detail.getBtnValue();
 
-    btnName.setText(nameOfButton);
-    btnValue.setText("₹ "+valueofButton);
+    checkBox.setText(nameOfButton);
+
         return view;
     }
 

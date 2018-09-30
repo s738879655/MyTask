@@ -84,24 +84,24 @@ public class DishesListAdapter extends BaseAdapter {
             customMess.setVisibility(View.VISIBLE);
 
         }
-        if(!(amountOfQuantity.trim()).equalsIgnoreCase("")||amountOfQuantity!=null)
+        if((!(amountOfQuantity.trim()).equalsIgnoreCase("0"))&&amountOfQuantity!=null)
         {
             quantityAmount.setVisibility(View.VISIBLE);
             quantityHead.setVisibility(View.VISIBLE);
         }
 
 
-        if(!(price.trim()).equalsIgnoreCase("")||price!=null)
+        if((!(timeVal.trim()).equalsIgnoreCase("0"))&&timeVal!=null)
         {
-            priceValue.setVisibility(View.VISIBLE);
-            priceValue.setVisibility(View.VISIBLE);
+           timeHead.setVisibility(View.VISIBLE);
+           timeValue.setVisibility(View.VISIBLE);
         }
 
 
 
         itemName.setText(nameOfItem);
         quantityAmount.setText(amountOfQuantity);
-        priceValue.setText(price);
+        priceValue.setText(" ₹ "+price);
         timeValue.setText(timeVal);
 
 
@@ -115,11 +115,11 @@ public class DishesListAdapter extends BaseAdapter {
         in.putExtra("itemName",nameOfItem);
         in.putExtra("quantityAmount",amountOfQuantity);
         in.putExtra("priceValue",price);
-        in.putExtra("timeValue",price);
-        in.putExtra("customStatus",price);
-        in.putExtra("checkStatus",price);
-        in.putExtra("buttonStatus",price);
-        in.putExtra("commentStatus",price);
+        in.putExtra("timeValue",timeVal);
+        in.putExtra("customStatus",customStatus);
+        in.putExtra("checkStatus",checkboxStatus);
+        in.putExtra("buttonStatus",buttonStatus);
+        in.putExtra("commentStatus",commentStatus);
         in.putExtra("imageUri",imageUri);
 
         context.startActivity(in);
