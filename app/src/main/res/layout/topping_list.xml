@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ButtonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Topping Name :"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/buttonname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_toEndOf="@+id/ButtonName"
+        android:layout_marginStart="10dp"
+        android:layout_alignBaseline="@+id/ButtonName"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/ButtonPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Topping Price :"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/ButtonName"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/buttonprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_toEndOf="@+id/ButtonPrice"
+        android:layout_marginStart="10dp"
+        android:layout_alignBaseline="@+id/ButtonPrice"
+        android:inputType="number" />
+
+</RelativeLayout>
