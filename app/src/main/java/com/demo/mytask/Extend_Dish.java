@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,18 +39,22 @@ public class Extend_Dish extends AppCompatActivity {
 
     private TextView itemName1,quantityAmount1,priceValue1,timeValue1,quantityHead1,priceHead1,timeHead1,btnListHead,btnListNote,checkBoxListHead,checkBoxListNote,commentHead;
     private Button canbtn;
-    LinearLayout listView1,listView2;
-    TextView tv_total,tv_subtotal,discount1,disclaimerTextview;
+    LinearLayout listView1,listView2,listView3;
+    TextView tv_total,tv_subtotal,discount1,disclaimerTextview,toppingListHead,toppingListNote;
     EditText tv_message;
     GridView gridView;
     ImageView dishimage,vegimage;
-    GridView gridView1;
+    GridView gridView1,gridView3;
     DatabaseReference databaseReference;
     DatabaseReference databaseReference1;
+    DatabaseReference databaseReference2;
     private ArrayList<buttonListDetail> btn_details= new ArrayList<>();
     private ArrayList<checkBoxListDetail> check_Box_details= new ArrayList<>();
+    private ArrayList<ToppingListDetails> topping_Box_details= new ArrayList<>();
     private buttonListAdapter adapter;
     private CheckBoxListAdapter adapter1;
+    private ToppingsListAdapter adapter2;
+    RadioGroup radioGrp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +73,15 @@ public class Extend_Dish extends AppCompatActivity {
         final String itemType= getIntent().getStringExtra("itemType");
         final String discount = getIntent().getStringExtra("discount");
         final String disclaimer = getIntent().getStringExtra("disclaimer");
+        final String toppingStatus = getIntent().getStringExtra("toppingStatus");
 
-        Toast.makeText(this, checkboxStatus, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, buttonStatus, Toast.LENGTH_SHORT).show();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         gridView = findViewById(R.id.btnList);
         gridView1 = findViewById(R.id.checkList);
+        gridView3 = findViewById(R.id.topList);
+        radioGrp = (RadioGroup) findViewById(R.id.radioGroup);
         disclaimerTextview=findViewById(R.id.showDisclaimer);
         getSupportActionBar().setTitle(nameOfItem);
 if(buttonStatus.equalsIgnoreCase("true"))
@@ -86,6 +95,17 @@ if(buttonStatus.equalsIgnoreCase("true"))
     gridView.setAdapter(adapter);
 
 }
+        if(toppingStatus.equalsIgnoreCase("true"))
+        {
+            if(nameOfItem!=null&&!nameOfItem.equalsIgnoreCase(""))
+                databaseReference2 = FirebaseDatabase.getInstance().getReference(nameOfItem).child("tpnglist");
+            databaseReference2.keepSynced(true);
+
+            adapter2=new ToppingsListAdapter(Extend_Dish.this,retrieveToppings(databaseReference2));
+
+            gridView3.setAdapter(adapter2);
+
+        }
 if(checkboxStatus.equalsIgnoreCase("true"))
 {
     if(nameOfItem!=null&&!nameOfItem.equalsIgnoreCase(""))
@@ -96,6 +116,7 @@ if(checkboxStatus.equalsIgnoreCase("true"))
     gridView1.setAdapter(adapter1);
 
 }
+
 
 if(disclaimer!=null)
     disclaimerTextview.setText(disclaimer);
@@ -118,9 +139,12 @@ vegimage=findViewById(R.id.vegImage1);
         tv_message = findViewById(R.id.tv_message);
         listView1 = findViewById(R.id.listView1);
         listView2 = findViewById(R.id.listView2);
+        listView3 = findViewById(R.id.listView3);
         tv_total=findViewById(R.id.tv_total);
         tv_subtotal=findViewById(R.id.tv_subtotal);
         discount1=findViewById(R.id.discount1);
+        toppingListHead=findViewById(R.id.toppingListHead);
+        toppingListNote=findViewById(R.id.toppingListNote);
 
 
 
@@ -225,8 +249,12 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
         if(imageUri!=null)
             Picasso.with(this).load(imageUri).into(dishimage);
 
-
-
+if(!toppingStatus.equalsIgnoreCase("true"))
+{
+    toppingListHead.setVisibility(View.GONE);
+    toppingListNote.setVisibility(View.GONE);
+    listView3.setVisibility(View.GONE);
+}
 
 
     }
@@ -242,6 +270,7 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
 
     private void fetchDataButton(DataSnapshot dataSnapshot)
     {
+        int i=0;
 
         for (DataSnapshot ds : dataSnapshot.getChildren())
         {
@@ -252,6 +281,17 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
                 Log.d("sds","Hellooo");
                 assert spacecraft != null;
                 //   if(spacecraft.getBillno().contains(searchstring))
+
+
+                //get string array from sourc
+
+                //create radio buttons
+
+                    RadioButton radioButton = new RadioButton(this);
+                    radioButton.setText(spacecraft.getBtnName());
+                    radioGrp.addView(radioButton);
+                    radioButton.setId(Integer.parseInt(spacecraft.getBtnValue()+i));
+                    i++;
                 btn_details.add(spacecraft);
             }
             catch(Exception e)
@@ -379,9 +419,10 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
             totalHeight += listItem.getMeasuredHeight();
         }
 
+
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight
-                + (listView.getHorizontalSpacing() * (listAdapter.getCount() - 1));
+                + (listView.getVerticalSpacing()) *( (listAdapter.getCount() - 1));
 
         listView.setLayoutParams(params);
         listView.requestLayout();
@@ -403,10 +444,93 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight
-                + (listView.getHorizontalSpacing() * (listAdapter.getCount() - 1));
+                + (listView.getVerticalSpacing() +6)* ((listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
 
     }
 
+    private void setListViewHeightBasedOnChildren3(GridView listView) {
+        Log.e("Listview Size ", "" + listView.getCount());
+       ToppingsListAdapter listAdapter= (ToppingsListAdapter) listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getVerticalSpacing())* ((listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
+    }
+    private void fetchDataToppings(DataSnapshot dataSnapshot)
+    {
+
+        for (DataSnapshot ds : dataSnapshot.getChildren())
+        {
+            Log.d("ds","Hell");
+            try
+            {
+                ToppingListDetails spacecraft2 = ds.getValue(ToppingListDetails.class);
+                Log.d("sds","Hellooo");
+                assert spacecraft2 != null;
+                //   if(spacecraft.getBillno().contains(searchstring))
+                 topping_Box_details.add(spacecraft2);
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                Log.d("ds_exception",e+"");
+            }
+        }
+    }
+
+    private List<ToppingListDetails> retrieveToppings(DatabaseReference db) {
+
+        Log.d("sdsd","Entered in the listener");
+
+        db.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("sdsd","Calling Fetch data");
+                //bill_details.clear();
+                fetchDataToppings(dataSnapshot);
+                setListViewHeightBasedOnChildren3(gridView3);
+                adapter2.notifyDataSetChanged();
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+                fetchDataToppings(dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return  topping_Box_details;
+    }
 }
