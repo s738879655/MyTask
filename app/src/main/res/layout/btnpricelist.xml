@@ -8,15 +8,21 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/buttonRadio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button Text"
+       android:padding="3dp"/>
+
 
         <TextView
             android:id="@+id/buttonValue"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Button Value"
-            android:layout_marginRight="5dp"
-
-            />
+            android:layout_marginRight="5dp" />
 
 </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.demo.mytask;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,9 +39,9 @@ import java.util.List;
 public class Extend_Dish extends AppCompatActivity {
 
     private TextView itemName1,quantityAmount1,priceValue1,timeValue1,quantityHead1,priceHead1,timeHead1,btnListHead,btnListNote,checkBoxListHead,checkBoxListNote,commentHead;
-    private Button canbtn;
+    private Button canbtn,addtocart,placeorder;
     LinearLayout listView1,listView2,listView3;
-    TextView tv_total,tv_subtotal,discount1,disclaimerTextview,toppingListHead,toppingListNote;
+    TextView quanadded,tv_total,tv_subtotal,discount1,disclaimerTextview,toppingListHead,toppingListNote;
     EditText tv_message;
     GridView gridView;
     ImageView dishimage,vegimage;
@@ -55,15 +56,19 @@ public class Extend_Dish extends AppCompatActivity {
     private CheckBoxListAdapter adapter1;
     private ToppingsListAdapter adapter2;
     RadioGroup radioGrp;
+    String price;int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extend_dish);
 
+        addtocart = findViewById(R.id.addMoreItems);
+        placeorder = findViewById(R.id.btn_place_order);
+        quanadded = findViewById(R.id.quantityAddedValue);
 
         final String nameOfItem = getIntent().getStringExtra("itemName");
         final String amountOfQuantity = getIntent().getStringExtra("quantityAmount");
-        final String price = getIntent().getStringExtra("priceValue");
+        final String[] price = {getIntent().getStringExtra("priceValue")};
         final String timeVal = getIntent().getStringExtra("timeValue");
         final String customStatus = getIntent().getStringExtra("customStatus");
         final String imageUri = getIntent().getStringExtra("imageUri");
@@ -148,12 +153,12 @@ vegimage=findViewById(R.id.vegImage1);
 
 
 
-        tv_subtotal.setText(" ₹ "+price);
-        tv_total.setText(" ₹ "+price);
+        tv_subtotal.setText(" ₹ "+ price[0]);
+        tv_total.setText(" ₹ "+ price[0]);
 
         itemName1.setText(nameOfItem);
         quantityAmount1.setText(amountOfQuantity);
-        priceValue1.setText(" ₹ "+price);
+        priceValue1.setText(" ₹ "+ price[0]);
         if(!timeVal.equalsIgnoreCase(""))
         timeValue1.setText(timeVal);
 
@@ -249,12 +254,72 @@ checkBoxListNote.setText("NOTE : Select Ingredient that you don't want to add in
         if(imageUri!=null)
             Picasso.with(this).load(imageUri).into(dishimage);
 
-if(!toppingStatus.equalsIgnoreCase("true"))
-{
-    toppingListHead.setVisibility(View.GONE);
-    toppingListNote.setVisibility(View.GONE);
-    listView3.setVisibility(View.GONE);
-}
+        if(!toppingStatus.equalsIgnoreCase("true"))
+        {
+            toppingListHead.setVisibility(View.GONE);
+            toppingListNote.setVisibility(View.GONE);
+            listView3.setVisibility(View.GONE);
+        }
+
+        radioGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                price[0] = (checkedId+"").substring(0,(checkedId+"").length()-1);
+            }
+        });
+        i=0;
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i == 0){
+                    i++;
+                    quanadded.setText(i+"");
+                }
+                if(customStatus.equals("true")){
+                    final AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
+                    alertbox.setTitle("Confirm Submission");
+
+                    alertbox.setPositiveButton("Repeat Last",
+                            new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    i++;
+                                    quanadded.setText(i+"");
+
+                                }
+                            })
+                            .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    alertbox.show();
+                }else{
+                    i++;
+                    quanadded.setText(i+"");
+                }
+            }
+        });
+
+        placeorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
+                alertbox.setTitle("Order Placed");
+                alertbox.setMessage("Your order placed successfully");
+                alertbox.setCancelable(false);
+                alertbox.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                startActivity(new Intent(Extend_Dish.this,Extend_Dish.class));
+                                finish();
+                            }
+                        });
+                alertbox.show();
+            }
+        });
 
 
     }
@@ -289,6 +354,9 @@ if(!toppingStatus.equalsIgnoreCase("true"))
 
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(spacecraft.getBtnName());
+                    if(i==0) {
+                        radioButton.setChecked(true);
+                    }
                     radioGrp.addView(radioButton);
                     radioButton.setId(Integer.parseInt(spacecraft.getBtnValue()+i));
                     i++;

@@ -4,7 +4,7 @@ package com.demo.mytask;
 
 public class DishDetail {
 
-   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus,toppingstatus,itemtype,discount,disclaimer;
+   String  itemName,quantityAmount,priceValue,timeValue,customStatus,imageUri,checkboxStatus,buttonStatus,commentStatus,toppingstatus,itemtype,discount,disclaimer,quantitytype;
 
    public DishDetail(){}
 
@@ -16,7 +16,7 @@ public class DishDetail {
         this.itemtype = itemtype;
     }
 
-    public DishDetail(String itemName, String quantityAmount, String priceValue, String itemtype, String timeValue, String customStatus, String imageUri, String checkboxStatus, String buttonStatus, String commentStatus,String toppingstatus,String discount) {
+    public DishDetail(String itemName, String quantityAmount, String priceValue, String itemtype, String timeValue, String customStatus, String imageUri, String checkboxStatus, String buttonStatus, String commentStatus,String toppingstatus,String discount,String disclaimer,String quantitytype) {
 
         this.itemName = itemName;
         this.toppingstatus = toppingstatus;
@@ -24,8 +24,8 @@ public class DishDetail {
         this.discount = discount;
         this.priceValue = priceValue;
         this.itemtype = itemtype;
-
-
+        this.disclaimer = disclaimer;
+        this.quantitytype = quantitytype;
         this.timeValue = timeValue;
         this.customStatus=customStatus;
         this.imageUri=imageUri;
