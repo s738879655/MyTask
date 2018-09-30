@@ -75,11 +75,12 @@ public class DishesListAdapter extends BaseAdapter {
         final String customStatus = bill_detail.getCustomStatus();
         final String imageUri=bill_detail.getImageUri();
         final String checkboxStatus=bill_detail.getCheckboxStatus();
-        final String buttonStatus=bill_detail.getCommentStatus();
+        final String buttonStatus=bill_detail.getButtonStatus();
         final String commentStatus=bill_detail.getButtonStatus();
         final String discount=bill_detail.getDiscount();
         final String itemType=bill_detail.getItemtype();
-        final String disclaimer=bill_detail.getItemtype();
+        final String disclaimer=bill_detail.getDisclaimer();
+        final String toppingStatus=bill_detail.getToppingstatus();
 
 
         Log.d("aaa",nameOfItem+"    "+amountOfQuantity+"  "+price+"  "+timeVal+"    "+customStatus+"    "+checkboxStatus+"  "+buttonStatus+"    "+commentStatus+"   "+discount  );
@@ -116,6 +117,7 @@ else
         {
             quantityAmount.setVisibility(View.VISIBLE);
             quantityHead.setVisibility(View.VISIBLE);
+            quantityAmount.setText(amountOfQuantity);
         }
 
 
@@ -125,11 +127,11 @@ else
             timeValue.setVisibility(View.VISIBLE);
         }
 
-if(imageUri!=null)
+if(!imageUri.equalsIgnoreCase(""))
     Picasso.with(context).load(imageUri).into(dishImage);
 
         itemName.setText(nameOfItem);
-        quantityAmount.setText(amountOfQuantity);
+
         priceValue.setText(" ₹ "+price);
         timeValue.setText(timeVal);
 
@@ -153,6 +155,7 @@ if(imageUri!=null)
         in.putExtra("discount",discount);
         in.putExtra("itemType",itemType);
         in.putExtra("disclaimer",disclaimer);
+        in.putExtra("toppingStatus",toppingStatus);
 
         context.startActivity(in);
 
